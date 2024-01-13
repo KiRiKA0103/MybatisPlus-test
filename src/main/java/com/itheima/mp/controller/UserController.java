@@ -4,6 +4,7 @@ package com.itheima.mp.controller;
 import cn.hutool.core.bean.BeanUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
+import com.itheima.mp.domain.dto.PageDTO;
 import com.itheima.mp.domain.dto.UserFormDTO;
 import com.itheima.mp.domain.po.User;
 import com.itheima.mp.domain.query.UserQuery;
@@ -120,7 +121,10 @@ public class UserController {
     }
 
 
-
+    @GetMapping("/page")
+    public PageDTO<UserVO> queryUsersPage(UserQuery query){
+        return userService.queryUsersPage(query);
+    }
 
 
 

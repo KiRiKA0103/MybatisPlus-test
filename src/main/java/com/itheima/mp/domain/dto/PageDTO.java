@@ -1,6 +1,7 @@
 package com.itheima.mp.domain.dto;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollUtil;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +42,7 @@ public class PageDTO<V> {
     public static <V, P> PageDTO<V> of(Page<P> p, Class<V> voClass) {
         // 1.非空校验
         List<P> records = p.getRecords();
-        if (records == null || records.size() <= 0) {
+        if (CollUtil.isEmpty(records)) {
             // 无数据，返回空结果
             return empty(p);
         }
@@ -62,7 +63,7 @@ public class PageDTO<V> {
     public static <V, P> PageDTO<V> of(Page<P> p, Function<P, V> convertor) {
         // 1.非空校验
         List<P> records = p.getRecords();
-        if (records == null || records.size() <= 0) {
+        if (CollUtil.isEmpty(records)) {
             // 无数据，返回空结果
             return empty(p);
         }
